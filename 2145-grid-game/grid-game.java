@@ -1,15 +1,16 @@
 class Solution {
     public long gridGame(int[][] grid) {
+        int n = grid[0].length;
         long firstRowSum = 0;
-        for (int num : grid[0]) {
-            firstRowSum += num;
+        long SecondRowSum = 0;
+        for (int i = 0; i < n; i++) {
+            firstRowSum += grid[0][i];
         }
-        long secondRowSum = 0;
         long minimumSum = Long.MAX_VALUE;
-        for (int turnIndex = 0; turnIndex < grid[0].length; ++turnIndex) {
-            firstRowSum -= grid[0][turnIndex];
-            minimumSum = Math.min( minimumSum, Math.max(firstRowSum, secondRowSum) );
-            secondRowSum += grid[1][turnIndex];
+        for (int i = 0; i < n; i++) {
+            firstRowSum -= grid[0][i];                 
+            minimumSum = Math.min(minimumSum, Math.max(firstRowSum, SecondRowSum));
+            SecondRowSum += grid[1][i];              
         }
         return minimumSum;
     }
